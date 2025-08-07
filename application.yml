@@ -4,6 +4,9 @@ eureka:
   client:
     fetch-registry: true
     register-with-eureka: true
+    lease-renewal-interval-in-seconds: 5      # default is 30
+    lease-expiration-duration-in-seconds: 10  # default is 90
+    registry-fetch-interval-seconds: 5        # how often client pulls registry
     service-url:
       defaultZone: http://localhost:8761/eureka
 
@@ -46,5 +49,5 @@ resilience4j:
     instances:
       userRateLimiter:
         limit-refresh-period: 4s
-        limit-for-period: 2
+        limit-for-period: 12
         timeout-duration: 2s      
