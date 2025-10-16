@@ -39,6 +39,17 @@ resilience4j:
         slidingWindowSize: 10
         slidingWindowType: COUNT_BASED
 
+      aiServiceCB:
+        failureRateThreshold: 80
+        minimumNumberOfCalls: 6
+        slidingWindowType: COUNT_BASED
+        slidingWindowSize: 10
+        slowCallDurationThreshold: 60s      # Declare slow only after 60 sec
+        slowCallRateThreshold: 100          # Allow slow calls
+        waitDurationInOpenState: 20s        # Optional: retry after 20 sec
+        permittedNumberOfCallsInHalfOpenState: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true  
+
   retry:
     instances:
       ratingHotelService:
